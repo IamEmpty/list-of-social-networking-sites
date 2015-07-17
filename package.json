@@ -1,0 +1,19 @@
+{
+  "name": "list-of-social-networking-sites",
+  "version": "0.0.1",
+  "description": "",
+  "main": "README.ms",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IamEmpty/list-of-social-networking-sites.git"
+  },
+  "author": "IamEmpty",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IamEmpty/list-of-social-networking-sites/issues"
+  },
+  "homepage": "https://github.com/IamEmpty/list-of-social-networking-sites#readme"
+}
