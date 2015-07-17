@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/IamEmpty/list-of-social-networking-sites/issues"
   },
-  "homepage": "https://github.com/IamEmpty/list-of-social-networking-sites#readme"
+  "homepage": "https://github.com/IamEmpty/list-of-social-networking-sites#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jade": "^1.0.1",
+    "gulp-open": "^1.0.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-stylus": "^2.0.5",
+    "gulp.spritesmith": "^3.8.2"
+  }
 }
