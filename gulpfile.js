@@ -18,7 +18,7 @@ var paths = {
   ],
   copyCss: [ 'bower_components/normalize.css/normalize.css', ],
   copyStatic: [
-    'bower_components/axshare-nav/**/*.{ttf,woff,eof,svg,eot}'
+    '**/*.{ttf,woff,eof,svg,eot}'
   ],
   sprite: [
     'bower_components/interjacent/blocks/forms/_date/img/calendar.png',
