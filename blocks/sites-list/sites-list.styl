@@ -1,2 +1,14 @@
-.sites-list
-  color red
+.sites-list__item
+  overflow hidden
+
+.sites-list__row
+  margin 0 -10px
+  overflow hidden
+
+for num in (1..12)
+  .sites-list__col-{num}
+    width (100% / 12 * num)
+    min-height 1px
+    float left
+    box-sizing border-box
+    padding 0 10px
