@@ -18,7 +18,8 @@ var paths = {
   ],
   copyCss: [ 'bower_components/normalize.css/normalize.css', ],
   copyStatic: [
-    '**/*.{ttf,woff,eof,svg,eot}'
+    'static/**/*.{ttf,woff,eof,svg,eot}',
+    'static/**/*.{png,jpg}'
   ],
   sprite: [
     'bower_components/interjacent/blocks/forms/_date/img/calendar.png',
