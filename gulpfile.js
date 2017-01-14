@@ -1,22 +1,18 @@
-var gulp = require('gulp'),
-  stylus = require('gulp-stylus'),
-  plumber = require('gulp-plumber'),
-  spritesmith = require('gulp.spritesmith'),
-  jade = require('gulp-jade'),
-  open = require('gulp-open');
+const gulp = require('gulp'),
+  plugins = require('gulp-load-plugins')();
 
-var paths = {
-  jade: 'index.jade',
-  jadeWatch: [
-    'index.jade',
-    'blocks/**/*.jade'
+const paths = {
+  pug: 'index.pug',
+  pugWatch: [
+    'index.pug',
+    'blocks/**/*.pug'
   ],
   stylus: 'main.styl',
   stylusWatch: [
     'main.styl',
     'blocks/**/*.styl'
   ],
-  copyCss: [ 'bower_components/normalize.css/normalize.css', ],
+  copyCss: ['bower_components/normalize.css/normalize.css'],
   copyStatic: [
     'static/**/*.{ttf,woff,eof,svg,eot}',
     'static/**/*.{png,jpg}'
@@ -29,48 +25,45 @@ var paths = {
 };
 
 
-// Compile .jade into .html for development
-gulp.task( 'html', function() {
-  return gulp.src( paths.jade )
-    .pipe(plumber())
-    .pipe(jade({
+// Compile pug files into .html
+function html() {
+  return gulp.src( paths.pug )
+    .pipe(plugins.plumber())
+    .pipe(plugins.pug({
       basedir: './',
       pretty: true
     }))
     .pipe(gulp.dest( paths.build ))
-});
+}
 
 // Compile .stylus into CSS for development
-gulp.task( 'css', function() {
+function css() {
   return gulp.src( paths.stylus )
-    .pipe(plumber())
-    .pipe(stylus({
+    .pipe(plugins.plumber())
+    .pipe(plugins.stylus({
       'include css': true
     }))
     .pipe(gulp.dest( paths.build + 'css/' ))
-});
+}
 
+// Copy stylesheets files into development build folder
+function copyCss() {
+  return gulp.src( paths.copyCss )
+    .pipe( gulp.dest( paths.build + 'css/' ));
+}
+
+// Copy files from static into development build folder
+function copyStatic() {
+  return gulp.src( paths.copyStatic )
+    .pipe(gulp.dest( paths.build ));
+}
 
 // Copy files into development build folder
-gulp.task( 'copy', [ 'copy-css', 'copy-static' ]);
-
-  // Copy stylesheets files into development build folder
-  gulp.task( 'copy-css', function() {
-    gulp.src( paths.copyCss )
-      .pipe( gulp.dest( paths.build + 'css/' ));
-  });
-
-  // Copy files from static into development build folder
-  gulp.task( 'copy-static', function() {
-    gulp.src( paths.copyStatic )
-      .pipe(gulp.dest( paths.build ));
-  });
-
+const copy = gulp.parallel(copyCss, copyStatic);
 
 // Create common sprite for dellin pages
-gulp.task( 'sprite', function() {
-
-  var spriteData =
+function sprite() {
+  let spriteData =
     gulp.src( paths.sprite ) // path to images for sprite
       .pipe(spritesmith({
         imgName: 'icon-sprite.png',
@@ -83,15 +76,19 @@ gulp.task( 'sprite', function() {
 
   spriteData.img.pipe(gulp.dest( 'static/img/sprites' ));           // path for images
   spriteData.css.pipe(gulp.dest( 'public/stylesheets/partials' ));  // path for stylesheets
-});
+}
 
 
 // Rerun the task when a file changes
-gulp.task( 'watch', function() {
-  gulp.watch( paths.jadeWatch, [ 'html' ]);
-  gulp.watch( paths.stylusWatch, [ 'css' ]);
-});
+function watch() {
+  gulp.watch(paths.pugWatch, html);
+  gulp.watch(paths.stylusWatch, css);
+}
 
+gulp.task('build', gulp.parallel(html, css, copy));
+gulp.task('default', gulp.series('build', watch));
 
-gulp.task( 'build', [ 'html', 'css', 'copy' ] );
-gulp.task( 'default', [ 'build', 'watch' ] );
+gulp.task('deploy', gulp.series('build', () =>
+  gulp.src('./build/**/*')
+    .pipe(plugins.ghPages())
+));

@@ -1,1 +1,1 @@
-# list-of-social-networking-sites
+# list of social networking sites
