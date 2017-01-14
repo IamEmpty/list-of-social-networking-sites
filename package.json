@@ -1,27 +1,29 @@
 {
   "name": "list-of-social-networking-sites",
   "version": "0.0.1",
-  "description": "",
+  "description": "Just list",
   "main": "README.ms",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IamEmpty/list-of-social-networking-sites.git"
+    "url": "git+https://github.com/pure-js/list-of-social-networking-sites.git"
   },
-  "author": "IamEmpty",
-  "license": "ISC",
+  "author": "pure-js",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/IamEmpty/list-of-social-networking-sites/issues"
+    "url": "https://github.com/pure-js/list-of-social-networking-sites/issues"
   },
-  "homepage": "https://github.com/IamEmpty/list-of-social-networking-sites#readme",
+  "homepage": "https://github.com/pure-js/list-of-social-networking-sites#readme",
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-jade": "^1.0.1",
-    "gulp-open": "^1.0.0",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-gh-pages": "^0.5.4",
+    "gulp-load-plugins": "^1.4.0",
+    "gulp-open": "^2.0.0",
     "gulp-plumber": "^1.0.1",
+    "gulp-pug": "^3.2.0",
     "gulp-stylus": "^2.0.5",
-    "gulp.spritesmith": "^3.8.2"
+    "gulp.spritesmith": "^6.3.0"
   }
 }
