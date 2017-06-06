@@ -2,8 +2,9 @@
   "name": "list-of-social-networking-sites",
   "version": "0.0.1",
   "description": "Just list",
-  "main": "README.ms",
+  "main": "README.md",
   "scripts": {
+    "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +25,7 @@
     "gulp-plumber": "^1.0.1",
     "gulp-pug": "^3.2.0",
     "gulp-stylus": "^2.0.5",
-    "gulp.spritesmith": "^6.3.0"
+    "gulp.spritesmith": "^6.3.0",
+    "normalize.css": "^7.0.0"
   }
 }

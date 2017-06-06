@@ -12,14 +12,10 @@ const paths = {
     'main.styl',
     'blocks/**/*.styl'
   ],
-  copyCss: ['bower_components/normalize.css/normalize.css'],
+  copyCss: ['node_modules/normalize.css/normalize.css'],
   copyStatic: [
     'static/**/*.{ttf,woff,eof,svg,eot}',
     'static/**/*.{png,jpg}'
-  ],
-  sprite: [
-    'bower_components/interjacent/blocks/forms/_date/img/calendar.png',
-    'bower_components/interjacent/static/img/icons-source/**/*.png'
   ],
   build: 'build/'
 };
@@ -85,10 +81,11 @@ function watch() {
   gulp.watch(paths.stylusWatch, css);
 }
 
-gulp.task('build', gulp.parallel(html, css, copy));
-gulp.task('default', gulp.series('build', watch));
+const build = gulp.parallel(html, css, copy);
+exports.build = build;
+exports.default = gulp.series(build, watch);
 
-gulp.task('deploy', gulp.series('build', () =>
+exports.deploy = gulp.series(build, () =>
   gulp.src('./build/**/*')
     .pipe(plugins.ghPages())
-));
+);
